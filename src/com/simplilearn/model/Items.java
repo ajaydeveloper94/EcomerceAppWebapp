@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Items {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="item_id")
 	private long itemId ;
 	
@@ -29,10 +29,10 @@ public class Items {
 	private double totalPrice;
 	
 	@ManyToOne
-	@JoinColumn(name="cart_id")
+	@JoinColumn(name="cart_id", nullable=false)
 	private Cart cart;
 	
-	
+	public Items() {}
 	
 	public Cart getCart() {
 		return cart;
@@ -74,14 +74,13 @@ public class Items {
 		this.totalPrice = totalPrice;
 	}
 
-	public Items(int quantity, String itemName, double totalPrice) {
+	public Items(int quantity, String itemName, double totalPrice, Cart cart) {
 		super();
 		this.quantity = quantity;
 		this.itemName = itemName;
 		this.totalPrice = totalPrice;
+		this.cart = cart;
 	}
-
-	public Items() {}
 	
 	
 }

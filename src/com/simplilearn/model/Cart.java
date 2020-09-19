@@ -15,9 +15,12 @@ import javax.persistence.Table;
 public class Cart {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="cart_id")
 	private long id ;
+	
+	@Column(name="name")
+	private String name;
 	
 	@Column(name="total")
 	private double total;
@@ -25,7 +28,7 @@ public class Cart {
 	@OneToMany(mappedBy="cart")
 	private Set<Items> items;
 	
-	Cart(){}
+	public Cart(){}
 
 	public Cart(double total, Set<Items> items) {
 		super();
@@ -55,6 +58,16 @@ public class Cart {
 
 	public void setItems(Set<Items> items) {
 		this.items = items;
-	}	
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
 	
 }
